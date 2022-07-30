@@ -13,6 +13,8 @@ make copy-env
 make api-up
 ```
 
+#### Import postman collection from scripts/go-ddd.postman_collection.json
+
 ### Project tree
 ````
 ├── Makefile
