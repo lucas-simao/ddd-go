@@ -1,6 +1,6 @@
 # ddd-go
 
-#### This is a cloud function and they objetive is create personalized notifications and publish in notification_cf_subscriber_custom_notification_sender.
+#### This is an API to study and apply knowledge about ddd
 
 ### Requirements
 * [Go](https://golang.org/doc/install) >= 1.16
