@@ -11,5 +11,6 @@ func addRoutes(e *echo.Echo, cs customers.Service) {
 
 	v1.POST("/customers", handlers.PostCustomer(cs))
 	v1.GET("/customers/:id", handlers.GetCustomerById(cs))
+	v1.PUT("/customers/:id", handlers.PutCustomerById(cs))
 
 }

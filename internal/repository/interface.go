@@ -10,7 +10,7 @@ import (
 
 type Repository interface {
 	PostCustomer(context.Context, entity.Customer) (entity.Customer, error)
-	PutCustomer(context.Context, entity.Customer) (uuid.UUID, error)
 	GetCustomerById(context.Context, uuid.UUID) (entity.Customer, error)
+	PutCustomerById(context.Context, entity.Customer) (entity.Customer, error)
 	DeleteCustomerById(context.Context, uuid.UUID) error
 }

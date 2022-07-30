@@ -22,12 +22,12 @@ func (s service) PostCustomer(ctx context.Context, customer entity.Customer) (en
 	return s.repository.PostCustomer(ctx, customer)
 }
 
-func (s service) PutCustomer(ctx context.Context, customer entity.Customer) (customerId uuid.UUID, err error) {
-	return
+func (s service) GetCustomerById(ctx context.Context, customerId uuid.UUID) (entity.Customer, error) {
+	return s.repository.GetCustomerById(ctx, customerId)
 }
 
-func (s service) GetCustomerById(ctx context.Context, customerId uuid.UUID) (customer entity.Customer, err error) {
-	return s.repository.GetCustomerById(ctx, customerId)
+func (s service) PutCustomerById(ctx context.Context, customer entity.Customer) (entity.Customer, error) {
+	return s.repository.PutCustomerById(ctx, customer)
 }
 
 func (s service) DeleteCustomerById(ctx context.Context, customerId uuid.UUID) (err error) {

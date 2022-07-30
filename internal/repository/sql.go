@@ -15,3 +15,13 @@ var sqlGetCustomerById = `
 	FROM customers
 	WHERE id = $1 AND deleted_at IS NULL
 `
+
+var sqlUpdateCustomerById = `
+	UPDATE customers
+	SET 
+		first_name = lower(:first_name),
+		last_name = lower(:last_name),
+		birth_date = :birth_date
+	WHERE id = :id
+	RETURNING *
+`

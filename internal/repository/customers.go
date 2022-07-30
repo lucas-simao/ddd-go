@@ -23,10 +23,6 @@ func (r *repository) PostCustomer(ctx context.Context, customer entity.Customer)
 	return newCustomer, nil
 }
 
-func (r *repository) PutCustomer(context.Context, entity.Customer) (uuid.UUID, error) {
-	return uuid.Nil, nil
-}
-
 func (r *repository) GetCustomerById(ctx context.Context, customerId uuid.UUID) (entity.Customer, error) {
 	row := r.db.QueryRowContext(ctx, sqlGetCustomerById, customerId)
 
@@ -45,6 +41,22 @@ func (r *repository) GetCustomerById(ctx context.Context, customerId uuid.UUID) 
 	}
 
 	return customer, nil
+}
+
+func (r *repository) PutCustomerById(ctx context.Context, customer entity.Customer) (entity.Customer, error) {
+	namedStmt, err := r.db.PrepareNamedContext(ctx, sqlUpdateCustomerById)
+	if err != nil {
+		return entity.Customer{}, err
+	}
+
+	var customerUpdated entity.Customer
+
+	err = namedStmt.GetContext(ctx, &customerUpdated, customer)
+	if err != nil {
+		return entity.Customer{}, err
+	}
+
+	return customerUpdated, err
 }
 
 func (r *repository) DeleteCustomerById(context.Context, uuid.UUID) error {

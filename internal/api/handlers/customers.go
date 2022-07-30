@@ -12,9 +12,9 @@ import (
 
 func PostCustomer(cs customers.Service) echo.HandlerFunc {
 	return func(c echo.Context) error {
-		p := entity.Customer{}
-
 		ctx := c.Request().Context()
+
+		p := entity.Customer{}
 
 		err := c.Bind(&p)
 		if err != nil {
@@ -54,6 +54,53 @@ func GetCustomerById(cs customers.Service) echo.HandlerFunc {
 			return c.JSON(http.StatusBadRequest, result)
 		}
 
-		return c.JSON(http.StatusCreated, customer)
+		return c.JSON(http.StatusOK, customer)
+	}
+}
+
+func PutCustomerById(cs customers.Service) echo.HandlerFunc {
+	return func(c echo.Context) error {
+		ctx := c.Request().Context()
+
+		p := entity.Customer{}
+
+		err := c.Bind(&p)
+		if err != nil {
+			result.Message = fmt.Sprintf("error to bind body: %v", err)
+			return c.JSON(http.StatusBadRequest, result)
+		}
+
+		err = p.Validate()
+		if err != nil {
+			result.Message = fmt.Sprintf("error to validate: %v", err)
+			return c.JSON(http.StatusBadRequest, result)
+		}
+
+		customerId, err := uuid.Parse(c.Param("id"))
+		if err != nil {
+			result.Message = fmt.Sprintf("error to get customer id: %v", err)
+			return c.JSON(http.StatusBadRequest, result)
+		}
+
+		customer, err := cs.GetCustomerById(ctx, customerId)
+		if err != nil {
+			result.Message = fmt.Sprintf("error to get customer: %v", err)
+			return c.JSON(http.StatusBadRequest, result)
+		}
+
+		if customer.Id == uuid.Nil {
+			result.Message = "customer not exist"
+			return c.JSON(http.StatusBadRequest, result)
+		}
+
+		p.Id = customerId
+
+		customerUpdated, err := cs.PutCustomerById(ctx, p)
+		if err != nil {
+			result.Message = fmt.Sprintf("error to update customer: %v", err)
+			return c.JSON(http.StatusBadRequest, result)
+		}
+
+		return c.JSON(http.StatusOK, customerUpdated)
 	}
 }
