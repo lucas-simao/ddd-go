@@ -1,6 +1,6 @@
 # ddd-go
 
-#### This is an API to study and apply knowledge about ddd
+#### This is an API to study and apply knowledge about DDD
 
 ### Requirements
 * [Go](https://golang.org/doc/install) >= 1.16
