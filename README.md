@@ -45,7 +45,9 @@ make api-up
 │       └── sql.go
 ├── main.go
 └── scripts
+    ├── go-ddd.postman_collection.json
     ├── migrate.sh
     └── migrations
         ├── 0001.down.sql
         └── 0001.up.sql
+````
