@@ -27,8 +27,24 @@ func (r *repository) PutCustomer(context.Context, entity.Customer) (uuid.UUID, e
 	return uuid.Nil, nil
 }
 
-func (r *repository) GetCustomerById(context.Context, uuid.UUID) (entity.Customer, error) {
-	return entity.Customer{}, nil
+func (r *repository) GetCustomerById(ctx context.Context, customerId uuid.UUID) (entity.Customer, error) {
+	row := r.db.QueryRowContext(ctx, sqlGetCustomerById, customerId)
+
+	var customer entity.Customer
+
+	err := row.Scan(
+		&customer.Id,
+		&customer.FirstName,
+		&customer.LastName,
+		&customer.BirthDate,
+		&customer.UpdatedAt,
+		&customer.CreatedAt,
+	)
+	if err != nil {
+		return entity.Customer{}, err
+	}
+
+	return customer, nil
 }
 
 func (r *repository) DeleteCustomerById(context.Context, uuid.UUID) error {
