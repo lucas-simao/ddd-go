@@ -7,9 +7,11 @@
 * [Docker](https://docs.docker.com/get-docker/)
 * [Docker-compose](https://docs.docker.com/compose/)
 
-### To run
-1 - make copy-env
-2 - make api-up
+### Run api
+```
+make copy-env
+make api-up
+```
 
 ### Project tree
 ````
