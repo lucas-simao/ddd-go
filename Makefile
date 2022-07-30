@@ -13,3 +13,6 @@ storage-down-volume: ## Finalize db in Docker and remove data
 api-up: ## Run API
 	@make storage-up
 	@go run main.go
+
+copy-env: ## Copy .env.example to projects root
+	@cp ./configs/.env.example ./.env
