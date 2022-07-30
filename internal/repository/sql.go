@@ -25,3 +25,7 @@ var sqlUpdateCustomerById = `
 	WHERE id = :id
 	RETURNING *
 `
+
+var sqlDeleteCustomerById = `
+	DELETE FROM customers WHERE id = $1
+`

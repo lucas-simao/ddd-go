@@ -31,5 +31,5 @@ func (s service) PutCustomerById(ctx context.Context, customer entity.Customer) 
 }
 
 func (s service) DeleteCustomerById(ctx context.Context, customerId uuid.UUID) (err error) {
-	return
+	return s.repository.DeleteCustomerById(ctx, customerId)
 }

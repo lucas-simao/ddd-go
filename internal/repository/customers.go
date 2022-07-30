@@ -59,6 +59,12 @@ func (r *repository) PutCustomerById(ctx context.Context, customer entity.Custom
 	return customerUpdated, err
 }
 
-func (r *repository) DeleteCustomerById(context.Context, uuid.UUID) error {
+func (r *repository) DeleteCustomerById(ctx context.Context, customerId uuid.UUID) error {
+	_, err := r.db.ExecContext(ctx, sqlDeleteCustomerById, customerId)
+
+	if err != nil {
+		return err
+	}
+
 	return nil
 }

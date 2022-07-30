@@ -104,3 +104,34 @@ func PutCustomerById(cs customers.Service) echo.HandlerFunc {
 		return c.JSON(http.StatusOK, customerUpdated)
 	}
 }
+
+func DeleteCustomerById(cs customers.Service) echo.HandlerFunc {
+	return func(c echo.Context) error {
+		ctx := c.Request().Context()
+
+		customerId, err := uuid.Parse(c.Param("id"))
+		if err != nil {
+			result.Message = fmt.Sprintf("error to get customer id: %v", err)
+			return c.JSON(http.StatusBadRequest, result)
+		}
+
+		customer, err := cs.GetCustomerById(ctx, customerId)
+		if err != nil {
+			result.Message = fmt.Sprintf("error to get customer: %v", err)
+			return c.JSON(http.StatusBadRequest, result)
+		}
+
+		if customer.Id == uuid.Nil {
+			result.Message = "customer not exist"
+			return c.JSON(http.StatusBadRequest, result)
+		}
+
+		err = cs.DeleteCustomerById(ctx, customerId)
+		if err != nil {
+			result.Message = fmt.Sprintf("error to delete customer: %v", err)
+			return c.JSON(http.StatusBadRequest, result)
+		}
+
+		return c.NoContent(http.StatusNoContent)
+	}
+}
