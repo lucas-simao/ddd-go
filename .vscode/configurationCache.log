@@ -1,1 +1,0 @@
-{"buildTargets":["api-up","copy-env","storage-down","storage-down-volume","storage-up"],"launchTargets":[],"customConfigurationProvider":{"workspaceBrowse":{"browsePath":[],"compilerArgs":[]},"fileIndex":[]}}
