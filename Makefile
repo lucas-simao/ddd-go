@@ -16,3 +16,12 @@ api-up: ## Run API
 
 copy-env: ## Copy .env.example to projects root
 	@cp ./configs/.env.example ./.env
+
+test: ## Go test
+	go test ./...
+
+test_coverage: ## Go test with coverage file
+	go test ./... -coverprofile=coverage.out
+
+get_dependencies: ## Go get dependencies
+	 go get -v -t -d ./...
