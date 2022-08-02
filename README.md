@@ -8,6 +8,11 @@
 * [Docker-compose](https://docs.docker.com/compose/)
 * [Postman](https://www.postman.com/downloads/) <b><-Import postman collection from /scripts/go-ddd.postman_collection.json</b>
 
+### See all help commands
+```
+make help
+```
+
 ### Run api
 ```
 make copy-env
@@ -19,6 +24,8 @@ make api-up
 ├── Makefile
 ├── README.md
 ├── configs
+│   └── container.go
+├── coverage.out
 ├── deployments
 │   └── docker-compose.yml
 ├── go.mod
@@ -38,13 +45,14 @@ make api-up
 │   │   └── entity.go
 │   └── repository
 │       ├── customers.go
+│       ├── customers_test.go
 │       ├── interface.go
+│       ├── main_test.go
 │       ├── repository.go
 │       └── sql.go
 ├── main.go
 └── scripts
     ├── go-ddd.postman_collection.json
-    ├── migrate.sh
     └── migrations
         ├── 0001.down.sql
         └── 0001.up.sql
