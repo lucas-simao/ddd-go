@@ -10,6 +10,13 @@ import (
 	"github.com/google/uuid"
 )
 
+var (
+	PostCustomerError   = errors.New("Error to register customer")
+	GetCustomerError    = errors.New("Error to get customer")
+	PutCustomerError    = errors.New("Error to update customer")
+	DeleteCustomerError = errors.New("Error to delete customer")
+)
+
 type Customer struct {
 	Id        uuid.UUID  `json:"id" db:"id"`
 	FirstName string     `json:"firstName" db:"first_name"`
