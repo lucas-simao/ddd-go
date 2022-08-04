@@ -1,4 +1,5 @@
 # ddd-go
+## This project use the recommendation from [golang-standards/project-layout](https://github.com/golang-standards/project-layout)
 
 #### This is an API to study and apply knowledge about DDD
 
