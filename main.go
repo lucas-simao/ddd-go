@@ -9,7 +9,7 @@ import (
 	"github.com/lucas-simao/ddd-go/internal/repository"
 )
 
-func mainOld() {
+func main() {
 	err := godotenv.Load(".env")
 	if err != nil {
 		log.Panic("Error to load .env in the root directory")
